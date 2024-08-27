@@ -5,19 +5,25 @@ import handleError from "./middlewares/handleError.middleware"
 import sequelize from "./database/mysql.database"
 configDotenv()
 const app:Express = express()
-const port = 8888
+const port = process.env.PORT || 8888
 
 app.listen(port,()=>{
     console.log(`http://localhost:${port}`)
 })
 app.use('/api/v1',router)
 app.use(handleError)
+
 sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('MySQL connected!');
   })
   .catch((error) => {
     console.error('Unable to connect to the database:', error);
   });
+  sequelize.sync().then(() => {
+    console.log('Database & tables created!');
+  });
+
+
 app.get('/',(req:Request,res:Response)=>{
     res.send("Hello")
 })

@@ -2,8 +2,8 @@ import Sequelize from "sequelize";
 import sequelize from "../database/mysql.database";
 
 
-const product = sequelize.define('product',{
-    id:{
+const Product = sequelize.define('Product',{
+    idProducts:{
         type:Sequelize.INTEGER,
         allowNull:false,
         primaryKey:true,
@@ -11,3 +11,5 @@ const product = sequelize.define('product',{
         
     }
 })
+
+export default Product

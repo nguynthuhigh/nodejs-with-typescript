@@ -1,9 +1,13 @@
 import AppError from "../../core/error";
-
-const authController = {
-    testAuth: (req, res) => {
-        throw new AppError('Error',200)
-    }
+import {Request, Response}  from 'express'
+import AuthServices from "../../services/admin/auth.services";
+import catchAsync from "../../middlewares/catchAsync.middleware";
+class AuthController {
+    static testAuth =catchAsync(async (req:Request, res:Response) => {
+        const data = await AuthServices.signUp();
+        console.log(data)
+        res.send(data)
+    })
 }
 
-export default authController;
+export default AuthController;
