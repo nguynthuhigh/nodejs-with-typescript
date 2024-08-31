@@ -1,11 +1,11 @@
-import AppError from "../../core/error";
 import {Request, Response}  from 'express'
-import AuthServices from "../../services/admin/auth.service";
 import catchAsync from "../../middlewares/catchAsync.middleware";
 import sendResponse from "../../utils/response";
+import ManageUserService from '../../services/admin/manage_user.service';
 class AuthController {
-    static addAdmin = catchAsync(async (req:Request, res:Response) => {
-        const data = await AuthServices.signUp(req.body);
+    static addNewUser = catchAsync(async (req:Request, res:Response) => {
+        console.log(req.body)
+        const data = await ManageUserService.addNewUser(req.body);
         console.log(data)
         return sendResponse(res,'Success!',data,200)
     })

@@ -1,17 +1,21 @@
 import Sequelize from "sequelize";
 import sequelize from "../database/mysql.database";
 
-
 const User = sequelize.define('User',{
     _id:{
-        type:Sequelize.INTEGER,
+        type:Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull:false,
-        primaryKey:true,
-        autoIncrement:true,
+        primaryKey:true
     },
     email:{
         type:Sequelize.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:{
+            name:'email',
+            msg:'Email đã tồn tại'
+        },
+       
     },
     user_name:{
         type:Sequelize.STRING,
@@ -27,6 +31,11 @@ const User = sequelize.define('User',{
         allowNull:true,
     },
 
+},{
+    indexes:[{
+        unique: true,
+        fields: ['email'],
+      },]
 })
 
 export default User

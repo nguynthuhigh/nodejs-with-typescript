@@ -1,7 +1,7 @@
 import User from "../../models/user.model";
 class AuthServices{
-    static signUp = async()=>{
-        const data = await User.create({userID:1})
+    static signUp = async({email,password})=>{
+        const data = await User.create({email,password})
         console.log(data)
         return data
     }

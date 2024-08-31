@@ -1,9 +1,8 @@
 import { Router } from "express";
-import controller from '../../controllers/admin/auth.controller'
+import controller from '../../controllers/admin/manage_user.controller'
 const router = Router()
 import catchAsync from "../../middlewares/catchAsync.middleware";
 
-
-router.get('/test')
+router.post('/add-new-user',catchAsync(controller.addNewUser))
 
 export default router
