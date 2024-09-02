@@ -1,4 +1,7 @@
+import { Response,Request,NextFunction } from "express"
+const AuthenticationAdmin = (req:Response,res:Request,next:NextFunction)=>{
 
-const Authentication = ()=>{
-
+}
+export default {
+    AuthenticationAdmin
 }

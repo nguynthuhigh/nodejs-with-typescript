@@ -4,7 +4,7 @@ import manageUserRoute from './admin/manage_user.routes';
 
 const router = Router();
 
-router.use('/auth', authRoute);
+router.use('/admin/auth', authRoute);
 router.use('/user', manageUserRoute);
 
 export default router;

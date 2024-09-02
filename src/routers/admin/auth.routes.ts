@@ -4,6 +4,7 @@ const router = Router()
 import catchAsync from "../../middlewares/catchAsync.middleware";
 
 
-router.get('/test')
+router.post('/add-new',catchAsync(controller.addNewAdmin))
+router.post('/login',catchAsync(controller.adminLogin))
 
 export default router

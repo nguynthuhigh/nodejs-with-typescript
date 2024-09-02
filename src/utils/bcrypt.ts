@@ -9,8 +9,8 @@ const hash =async  (password:string)=>{
         throw new AppError('Error system',500)
     }
 }
-const compare = (password:string,passwordHash:string)=>{
-    return bcrypt.compare(password,passwordHash)
+const compare = async (password:string,passwordHash:string)=>{
+    return await bcrypt.compare(password,passwordHash)
 }
 
 export default{
