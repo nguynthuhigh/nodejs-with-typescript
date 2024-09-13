@@ -1,7 +1,7 @@
 import {Request, Response}  from 'express'
 import catchAsync from "../../middlewares/catchAsync.middleware";
 import sendResponse from "../../utils/response";
-import ManageUserService from '../../services/admin/manage_user.service';
+import ManageUserService from '../../services/admin/user.service';
 class AuthController {
     static addNewUser = catchAsync(async (req:Request, res:Response) => {
         const data = await ManageUserService.addNewUser(req.body);
