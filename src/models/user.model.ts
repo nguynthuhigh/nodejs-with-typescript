@@ -1,32 +1,60 @@
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 import sequelize from "../database/mysql.database";
 
 
-const User = sequelize.define('User',{
+export interface IUser{
+    _id:string,
+    full_name:string,
+    email:string,
+    username:string,
+    password:string,
+    image:string,
+    active:string
+}
+export const User = sequelize.define<Model<IUser>>('User',{
     _id:{
-        type:Sequelize.INTEGER,
+        type:Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull:false,
-        primaryKey:true,
-        autoIncrement:true,
+        primaryKey:true
+    },
+    full_name:{
+        type:Sequelize.STRING,
+        allowNull:true,
+        defaultValue:null
     },
     email:{
         type:Sequelize.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:{
+            name:'email',
+            msg:'Email đã tồn tại'
+        }
     },
-    user_name:{
+    username:{
         type:Sequelize.STRING,
         allowNull:true,
+        defaultValue:null
     },
     //hash
     password:{
         type:Sequelize.STRING,
-        allowNull:false,
+        allowNull:false
     },
     image:{
         type:Sequelize.STRING,
         allowNull:true,
+        defaultValue:null
     },
-
+    active:{
+        type:Sequelize.BOOLEAN,
+        allowNull:false,
+        defaultValue:true
+    }
+},{
+    indexes:[{
+        unique: true,
+        fields: ['email'],
+      },]
 })
 
-export default User
